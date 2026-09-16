@@ -1,4 +1,4 @@
-const CACHE='ad-v3';
+const CACHE='ad-v4';
 const CORE=['/','/index.html','/assets/app.css','/js/app.js','/js/api.js','/manifest.webmanifest'];
 const STATIC_PREFIXES=['/assets/','/js/'];
 const NEVER_CACHE=['/pages/login.html','/pages/perfil.html','/pages/painel.html','/pages/admin.html','/pages/admin-','/pages/comerciante-inicio.html','/pages/empresa-editar.html','/pages/catalogo.html','/pages/produto-novo.html','/pages/servicos.html','/pages/servico-novo.html','/pages/promocoes.html','/pages/oferta-nova.html','/pages/cupom-novo.html','/pages/desempenho.html','/pages/assinatura.html','/pages/fidelidade-empresa.html','/pages/avaliar.html','/pages/minhas-avaliacoes.html'];
