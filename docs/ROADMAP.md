@@ -1,60 +1,37 @@
 # Roadmap — Arapongas Digital
 
-## Fase 1 — Fundação ✅
-- Repositório GitHub
-- Neon PostgreSQL em São Paulo
-- Neon Auth
-- Neon Data API
-- Estrutura multi-cidade
-- PWA inicial
+Objetivo: plataforma local de descoberta de produtos, serviços e empresas, começando em Arapongas/PR e preparada para expansão multi-cidade.
 
-## Fase 2 — Núcleo de dados 🔄
-- Categorias iniciais
-- Índices de busca e catálogo
-- Empresas e unidades
-- Produtos e serviços
-- Ofertas
-- Preparação da camada pública de leitura
+1. Fundação e repositório — ✅
+2. Banco de dados principal — ✅
+3. Camada pública segura — ✅
+4. Home dinâmica — 🔄
+5. Busca e filtros — 🔄
+6. Página da empresa — ✅ base funcional
+7. Segurança multiempresa e permissões — ✅
+8. Empresa completa: serviços, endereço e horários — ✅
+9. Produto + WhatsApp + mini-carrinho — ✅
+10. Ofertas e promoções — 🔄
+11. Autenticação e perfil do consumidor — 🔄
+12. Favoritos — estrutura iniciada
+13. Onboarding e isolamento do comerciante — segurança pronta / fluxo pendente
+14. Configurações da empresa — UI iniciada
+15. Gestão de catálogo — UI iniciada
+16. Serviços e agendamentos — pendente
+17. Promoções e cupons do comerciante — UI iniciada
+18. Analytics do comerciante — pendente
+19. Planos e assinaturas — base e página iniciadas
+20. Master Admin — shell iniciado
+21. Moderação e auditoria — banco pronto / UI pendente
+22. Avaliações — banco pronto / UI pendente
+23. Fidelidade — pendente
+24. Notificações e PWA avançada — PWA base iniciada
+25. QR, compartilhamento e SEO — pendente
+26. Vagas e eventos — banco de vagas pronto / UI pendente
+27. Busca e conteúdo assistidos por IA — pendente
+28. Performance, segurança e LGPD — segurança em andamento
+29. Vercel, domínio e QA de produção — pendente
+30. Multi-cidade / white-label / expansão — arquitetura preparada
 
-## Fase 3 — Experiência do consumidor
-- Home conectada ao banco
-- Busca
-- Filtros
-- Página da empresa
-- Página do produto/serviço
-- WhatsApp
-- Favoritos
-- Localização e mapa
-
-## Fase 4 — Área do comerciante
-- Login
-- Cadastro e edição da empresa
-- Catálogo
-- Promoções e cupons
-- Horários
-- Métricas
-- Planos
-
-## Fase 5 — Painel Master
-- Empresas e usuários
-- Categorias
-- Planos e assinaturas
-- Moderação
-- Métricas globais
-- Auditoria
-
-## Fase 6 — Publicação e PWA
-- Preview Vercel
-- Domínio
-- Instalação PWA
-- SEO e compartilhamento
-- Testes mobile
-
-## Fase 7 — Expansão
-- Cupons e fidelidade
-- Avaliações
-- Agendamentos
-- Vagas
-- Notificações
-- Busca assistida por IA
-- Multi-cidade / white-label
+## Prioridade atual
+Fechar rapidamente o fluxo funcional ponta a ponta do consumidor e do comerciante antes dos refinamentos secundários.
