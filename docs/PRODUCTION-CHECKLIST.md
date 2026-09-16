@@ -14,6 +14,7 @@
 - [x] Confirmar papel admin/superadmin no backend antes de liberar Master Admin.
 - [x] Revisar privilégios de `profiles`: `authenticated` não possui UPDATE em `role`, `active` ou `auth_user_id`; atualização fica limitada aos campos de perfil permitidos.
 - [x] Revisar tabelas tenant para RLS e privilégios mínimos.
+- [x] Remover execução pública/autenticada da função auxiliar `show_db_tree()` no banco principal.
 - [x] Definir CSP, frame-ancestors, referrer policy e demais headers de segurança no código; falta validar no preview real.
 - [ ] Definir política final de privacidade, termos, controlador/canal LGPD e retenção.
 - [x] Preparar PWA no código: manifest, ícone instalável, cache versionado, exclusão de áreas privadas e fallback offline; falta QA real em navegador/dispositivo.
@@ -30,9 +31,10 @@
 - Vínculo de propriedade do comerciante validado no código e nas políticas.
 - Autorização de admin/superadmin validada no backend/RPC e na camada cliente.
 - Privilégios de coluna do perfil auditados diretamente no banco, sem permissão de autoelevação de papel pelo usuário autenticado.
-- Função auxiliar `show_db_tree` auditada: não usa SECURITY DEFINER e não está exposta ao papel anonymous.
+- Função auxiliar `show_db_tree()` não usa SECURITY DEFINER e teve EXECUTE revogado de PUBLIC, `anonymous` e `authenticated`; verificação pós-migração no banco principal confirmou `anonymous_execute=false` e `authenticated_execute=false`.
 - Views públicas revisadas quanto à finalidade e exposição de dados.
 - CSP adicionada à configuração Vercel, junto com HSTS, nosniff, frame deny, referrer policy, permissions policy e no-store/noindex para áreas privadas.
+- Rotas pessoais de carrinho, favoritos, fidelidade e compartilhamento incluídas na proteção de cache/indexação; o carrinho passou a renderizar itens via DOM/event listeners em vez de HTML/eventos inline.
 - `robots.txt` alinhado às áreas privadas/administrativas, incluindo login.
 - Manifest PWA, ícone, Service Worker e fallback de navegação preparados para QA real.
 - Termos de Uso pré-lançamento adicionados.
