@@ -1,8 +1,8 @@
-const CACHE='ad-v6';
+const CACHE='ad-v7';
 const CORE=['/','/index.html','/assets/app.css','/assets/icon.svg','/js/app.js','/js/api.js','/manifest.webmanifest'];
 const STATIC_PREFIXES=['/assets/','/js/'];
-const NEVER_CACHE=['/pages/login.html','/pages/perfil.html','/pages/painel.html','/pages/admin.html','/pages/admin-','/pages/comerciante-inicio.html','/pages/empresa-editar.html','/pages/catalogo.html','/pages/produto-novo.html','/pages/servicos.html','/pages/servico-novo.html','/pages/promocoes.html','/pages/oferta-nova.html','/pages/cupom-novo.html','/pages/desempenho.html','/pages/assinatura.html','/pages/fidelidade-empresa.html','/pages/avaliar.html','/pages/minhas-avaliacoes.html'];
-const privatePath=path=>NEVER_CACHE.some(p=>path===p||path.startsWith(p));
+const NEVER_CACHE=['/pages/login','/pages/perfil','/pages/painel','/pages/admin','/pages/admin-','/pages/comerciante-inicio','/pages/empresa-editar','/pages/catalogo','/pages/produto-novo','/pages/servicos','/pages/servico-novo','/pages/promocoes','/pages/oferta-nova','/pages/cupom-novo','/pages/desempenho','/pages/assinatura','/pages/fidelidade-empresa','/pages/fidelidade','/pages/avaliar','/pages/minhas-avaliacoes','/pages/favoritos','/pages/carrinho','/pages/compartilhar'];
+const privatePath=path=>NEVER_CACHE.some(p=>path===p||path===p+'.html'||(p.endsWith('-')&&path.startsWith(p)));
 const staticPath=path=>CORE.includes(path)||STATIC_PREFIXES.some(p=>path.startsWith(p));
 self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(CORE)).then(()=>self.skipWaiting()))});
 self.addEventListener('activate',event=>{event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key!==CACHE).map(key=>caches.delete(key)))).then(()=>self.clients.claim()))});
