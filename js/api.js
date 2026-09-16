@@ -1,5 +1,5 @@
 // Camada pública de leitura do Arapongas Digital.
-// Este endpoint não contém credenciais de banco. Operações privilegiadas nunca devem ser feitas no navegador.
+// Somente views públicas são consultadas no navegador; credenciais privilegiadas ficam fora do frontend.
 const ARAPONGAS_API='https://ep-delicate-recipe-ac7oxhhf.apirest.sa-east-1.aws.neon.tech/arapongas_digital/rest/v1';
 
 async function apiGet(resource, params=''){
@@ -7,10 +7,15 @@ async function apiGet(resource, params=''){
   if(!response.ok) throw new Error(`API ${response.status}`);
   return response.json();
 }
-
+const esc=s=>String(s??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
+const qs=s=>encodeURIComponent(String(s??''));
 window.ArapongasDigitalAPI={
-  categories:()=>apiGet('categories','?select=id,name,slug,icon,sort_order&active=eq.true&order=sort_order.asc'),
-  businesses:()=>apiGet('businesses','?select=id,name,slug,description,logo_url,cover_url,whatsapp,phone,instagram,website,verified,featured&active=eq.true&order=featured.desc,name.asc'),
-  featuredProducts:()=>apiGet('products','?select=id,business_id,category_id,name,slug,description,price,promotional_price,in_stock,featured,updated_at&active=eq.true&featured=eq.true&order=updated_at.desc&limit=24'),
-  offers:()=>apiGet('offers','?select=id,business_id,product_id,title,description,image_url,starts_at,ends_at,featured&active=eq.true&order=featured.desc,starts_at.desc&limit=24')
+  categories:()=>apiGet('v_public_categories','?select=*&order=sort_order.asc,name.asc'),
+  businesses:(cityId)=>apiGet('v_public_businesses',`?select=*&city_id=eq.${qs(cityId)}&order=featured.desc,name.asc`),
+  businessBySlug:(slug)=>apiGet('v_public_businesses',`?select=*&slug=eq.${qs(slug)}&limit=1`),
+  featuredProducts:(cityId)=>apiGet('v_public_products',`?select=*&city_id=eq.${qs(cityId)}&featured=eq.true&order=updated_at.desc&limit=24`),
+  productsByBusiness:(businessId)=>apiGet('v_public_products',`?select=*&business_id=eq.${qs(businessId)}&order=featured.desc,name.asc&limit=100`),
+  offers:(cityId)=>apiGet('v_public_offers',`?select=*&city_id=eq.${qs(cityId)}&order=featured.desc,starts_at.desc&limit=24`),
+  search:async(cityId,query)=>{const q=String(query||'').trim();if(!q)return[];const like=qs(`*${q}*`);return apiGet('v_public_products',`?select=*&city_id=eq.${qs(cityId)}&or=(name.ilike.${like},description.ilike.${like},business_name.ilike.${like},category_name.ilike.${like})&order=featured.desc,updated_at.desc&limit=60`)},
+  escape:esc
 };
