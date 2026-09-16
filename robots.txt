@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /pages/login
 Disallow: /pages/admin
 Disallow: /pages/painel
 Disallow: /pages/perfil
