@@ -16,5 +16,9 @@ Disallow: /pages/cupom-novo
 Disallow: /pages/desempenho
 Disallow: /pages/assinatura
 Disallow: /pages/fidelidade-empresa
+Disallow: /pages/fidelidade
 Disallow: /pages/avaliar
 Disallow: /pages/minhas-avaliacoes
+Disallow: /pages/favoritos
+Disallow: /pages/carrinho
+Disallow: /pages/compartilhar
