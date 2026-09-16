@@ -11,9 +11,9 @@ Objetivo: plataforma local de descoberta de produtos, serviços e empresas, come
 7. Segurança multiempresa e permissões — ✅
 8. Empresa completa: serviços, endereço e horários — ✅
 9. Produto + WhatsApp + mini-carrinho — ✅
-10. Ofertas e promoções — 🔄
-11. Autenticação e perfil do consumidor — 🔄
-12. Favoritos — estrutura iniciada
+10. Ofertas e promoções — ✅
+11. Autenticação e perfil do consumidor — ✅ base funcional; QA final no domínio de produção
+12. Favoritos — 🔄 integração autenticada em andamento
 13. Onboarding e isolamento do comerciante — segurança pronta / fluxo pendente
 14. Configurações da empresa — UI iniciada
 15. Gestão de catálogo — UI iniciada
