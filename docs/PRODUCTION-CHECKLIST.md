@@ -9,7 +9,8 @@
 - [ ] Habilitar/verificar estratégia de verificação de e-mail antes da abertura pública.
 - [ ] Restringir CORS do Data API ao domínio oficial quando compatível com a arquitetura.
 - [ ] Testar cadastro, login, logout, sessão e recuperação de senha ponta a ponta.
-- [x] Validar RLS e autorização cruzada das tabelas tenant no banco (revisão de políticas concluída; QA ponta a ponta continua obrigatório).
+- [x] Validar RLS e autorização cruzada das tabelas tenant no banco.
+- [x] Aplicar no banco principal os entitlements de plano para produtos, destaques e criação de cupons, com verificação pós-migração.
 - [x] Implementar vínculo autenticado usuário → profile → business antes de liberar CRUD do comerciante.
 - [x] Confirmar papel admin/superadmin no backend antes de liberar Master Admin.
 - [x] Revisar privilégios de `profiles`: `authenticated` não possui UPDATE em `role`, `active` ou `auth_user_id`; atualização fica limitada aos campos de perfil permitidos.
@@ -24,10 +25,12 @@
 - [x] Revisar o código por marcadores TODO/placeholder/mock/demo evidentes; nenhum marcador correspondente foi localizado na busca automatizada.
 - [ ] Executar QA de fluxos críticos sem dados fictícios.
 
-## Verificações concluídas em 16/09/2026
+## Verificações concluídas em 16–17/09/2026
 - Neon Auth ativo no banco `arapongas_digital` com e-mail/senha e cadastro habilitados.
 - Data API ativa para o schema público.
 - RLS e políticas tenant revisadas no banco.
+- Migração final de entitlements aplicada ao banco principal em 17/09/2026: produtos e cupons passaram a ter políticas separadas por operação, mantendo ownership e impondo os benefícios do plano no INSERT/UPDATE aplicável.
+- Funções `business_plan_id`, `business_can_add_product`, `business_can_feature_product` e `business_can_use_coupons` verificadas após a migração: sem EXECUTE para `anonymous` e com EXECUTE para `authenticated`.
 - Vínculo de propriedade do comerciante validado no código e nas políticas.
 - Autorização de admin/superadmin validada no backend/RPC e na camada cliente.
 - Privilégios de coluna do perfil auditados diretamente no banco, sem permissão de autoelevação de papel pelo usuário autenticado.
@@ -39,9 +42,10 @@
 - Manifest PWA, ícone, Service Worker e fallback de navegação preparados para QA real.
 - Termos de Uso pré-lançamento adicionados.
 - Configuração do Neon Auth revalidada: trusted origins vazias, localhost ativo durante desenvolvimento, verificação de e-mail ainda não obrigatória e SMTP compartilhado em uso até o fechamento de produção.
+- Branch de fechamento confirmada no commit-base de deployment `84ce9ffe16565d5b81122d488c04caa8ef523f51` antes desta atualização documental.
 
 ## Pendências finais conhecidas
-- A integração Vercel conectada ainda não expõe criação/importação de um novo projeto Arapongas Digital; tentativa direta de deployment sem contexto de projeto não é aceita. Não reutilizar projetos do Voto Forte.
+- O conector Vercel aceita deployment com nome, ambiente e pacote de arquivos, mas não importa automaticamente uma branch GitHub por referência. Não reutilizar projetos do Voto Forte; o primeiro deployment deve ser um Preview próprio `arapongas-digital`.
 - Trusted domains do Neon Auth continuam vazios até existir URL real de preview/produção.
 - `Allow Localhost` continua ativo propositalmente durante desenvolvimento; deve ser desligado no fechamento de produção.
 - SMTP compartilhado do Neon ainda está ativo; trocar por SMTP próprio antes do lançamento público.
